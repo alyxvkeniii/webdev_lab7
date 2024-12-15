@@ -123,6 +123,7 @@ nav ul li:nth-child(3) {
 /* END of Navigation styles */
 
 .container {
+    display: flex;
     background-color: white;
     border-radius: 8px;
     padding: 40px;
@@ -134,16 +135,11 @@ nav ul li:nth-child(3) {
     padding-top: 150px;
 }
 
-h1 {
-    font-size: 2em;
-    color: #333;
-    margin-bottom: 10px;
-}
-
 .recipes-count {
     font-size: 1.2em;
     color: #777;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .bookmarks-section {
@@ -162,6 +158,14 @@ h1 {
 .text {
     flex: 1;
     margin-left: 20px;
+}
+
+.text h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    text-align: center;
 }
 
 .text h2 {
@@ -194,6 +198,24 @@ h1 {
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     background-color: #ff8f7e; /* Slightly lighter shade for hover effect */
+}
+
+/* Add button */
+.add-btn {
+    position: left;
+    background-color: #ff7979;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-btn:hover {
+    background-color: #ff7979;
 }
 
 /* Footer styles */
@@ -230,4 +252,4 @@ footer p {
     text-decoration: underline; /* Underline on hover */
 }
 
-/* END of Footer styles */
+/* END of Footer styles */ 
