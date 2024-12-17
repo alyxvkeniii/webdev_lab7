@@ -79,7 +79,7 @@
     <script>
         const foodData = {
             appetizers: [
-                { name: "Lumpiang Shanghai (Spring Rolls)", img: "/assets/images/lumpia.jpg" },
+                { name: "Lumpiang Shanghai (Spring Rolls)", img: "/assets/images/lumpia.jpg" }, 
                 { name: "Chicharon (Fried Pork Rinds)", img: "/assets/images/chicharon.jpg" },
                 { name: "Tokwa't Baboy (Tofu and Pork)", img: "/assets/images/tofu.jpg" },
                 { name: "Kilawin (Ceviche)", img: "/assets/images/kilawin.jpg" },
@@ -105,7 +105,7 @@
             ],
   
             'main-courses': [
-                { name: "Adobo (Marinated Meat)", img: "/assets/images/adobo.jpg" },
+                { name: "Adobo (Marinated Meat)", img: "/assets/images/adobo.jpg", href: "{{ route('adobo') }}" },
                 { name: "Kare-Kare (Peanut Stew)", img: "/assets/images/krkr.jpg" },
                 { name: "Lechon (Roast Pig)", img: "/assets/images/lchn.jpg" },
                 { name: "Bistek Tagalog (Beefsteak)", img: "/assets/images/bstk.jpg" },
@@ -171,22 +171,22 @@
         };
 
         function showFoods(category) {
-    
-            const foodCards = document.getElementById('food-cards');
-            foodCards.innerHTML = ''; // Clear previous cards
-            foodData[category].forEach(food => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <img src="${food.img}">
-                    <div class="card-content">
-                        <h3>${food.name}</h3>
-                        <div class="star-rating">★★★★☆</div> <!-- You can customize the rating here -->
-                        <button class="view-recipe" onclick="alert('Viewing ${food.name} Recipe')">View Recipe</button>
-                    </div>
-                `;
-                foodCards.appendChild(card);
-            });
+        const foodCards = document.getElementById('food-cards');
+        foodCards.innerHTML = ''; // Clear previous cards
+
+        foodData[category].forEach(food => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <img src="${food.img}">
+                <div class="card-content">
+                    <h3>${food.name}</h3>
+                    <div class="star-rating">★★★★☆</div> <!-- You can customize the rating here -->
+                    <a href="${food.href}" class="view-recipe">View Recipe</a>
+                </div>
+            `;
+            foodCards.appendChild(card);
+        });
         }
     </script>
 

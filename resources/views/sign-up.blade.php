@@ -41,7 +41,15 @@
         <form method="POST" action="{{ route('sign-up') }}">
             @csrf
 
-            <!-- Email Input -->
+            <!-- userame Input -->
+            <div class="form-group">
+                <label for="userame">Username</label>
+                <input type="text" id="username" name="username" required>
+                @error('email')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+
             <div class="form-group">
                 <label for="email">Your Email Address</label>
                 <input type="email" id="email" name="email" value="{{ old('email') }}" required>

@@ -34,6 +34,15 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
+            <!-- userame Input -->
+            <div class="form-group">
+                <label for="userame">Username</label>
+                <input type="userame" id="userame" name="userame"required>
+                @error('email')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+
             <!-- Email Input -->
             <div class="form-group">
                 <label for="email">Email Address</label>

@@ -26,14 +26,13 @@
                     <li><a href="{{ route('dashboard') }}" class="button"><b>Explore</b></a></li>
                     <li><a href="{{ route('my-recipe') }}" class="button"><b>My Recipes</b></a></li>
                     <li><a href="{{ route('menu2') }}" class="button"><b>Menu</b></a></li>
+                    <li><a href="{{ route('favorites') }}" class="button"><b>Favorites</b></a></li>
                     <li><a href="{{ route('faq2') }}" class="button"><b>FAQ</b></a></li>
 
                     <li class="dropdown">
                         <a href="#" class="button"><b>More</b></a>
                             <div class="dropdown-content">
                                 <a href="{{ route('profile') }}">Profile</a>
-                                <a href="{{ route('account') }}">Account</a>
-                                <a href="{{ route('settings') }}">Settings</a>
                                 <a href="{{ route('home') }}">Sign out</a>
                             </div>
                     </li>

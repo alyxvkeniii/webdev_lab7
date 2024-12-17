@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <button class="add-btn">+</button>
+        <a href="/add-recipe" class="add-btn">+</a>
     </div>
     <!--END OF MY RECIPE SECTION-->
 @endsection
