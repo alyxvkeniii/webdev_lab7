@@ -424,15 +424,15 @@ nav ul li:nth-child(3) {
 }
 
 .view-recipe {
-    padding: 15px 30px; /* Increased padding for larger buttons */
+    padding: 5px; /* Increased padding for larger buttons */
     margin-top: 10px; /* Space above the button */
     border: none;
-    border-radius: 25px;
+    border-radius: 20px;
     background-color: #ff8f7e;
     font-size: 16px; /* Font size */
     color: white;
-    cursor: pointer;
     transition: background-color 0.3s;
+    text-decoration: none;
 }
 
 .view-recipe:hover {
@@ -521,107 +521,6 @@ button:hover {
     font-size: 20px;
     color: gold;
     margin: 0 5px;
-}
-
-/* Container for projects section */
-#projects .projects {
-    display: flex;
-    flex-direction: column;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 100px 0;
-}
-
-/* Projects container */
-#projects .all-projects {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    
-}
-
-/* Project item styling */
-#projects .project-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 80%;
-    margin: 20px auto;
-    overflow: hidden;
-    border-radius: 10px;
-    background-color: #222; /* Dark background */
-}
-
-/* Project information section */
-#projects .project-info {
-    padding: 30px;
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    background-color: #ff8f7e;
-    color: white;
-}
-
-/* Title styling */
-#projects .project-info h1 {
-    font-size: 2.5rem;
-    font-weight: 500;
-    margin-bottom: 10px;
-    color: #ffff;
-}
-
-/* Subtitle styling */
-#projects .project-info h2 {
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin-top: 10px;
-    color: #ccc;
-}
-
-/* Description paragraph styling */
-#projects .project-info p {
-    color: #bbb;
-    font-size: 1rem;
-}
-
-/* Image container */
-#projects .project-img {
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
-    position: relative;
-    background-color: #ff8f7e;
-}
-
-/* Overlay effect on the image */
-#projects .project-img:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0.7;
-    z-index: 1;
-}
-
-/* Image styling */
-#projects .project-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    position: relative;
-    z-index: 0;
-}
-
-/* Image zoom effect on hover */
-#projects .project-item:hover .project-img img {
-    transform: scale(1.1);
 }
 
 /* Footer styles */

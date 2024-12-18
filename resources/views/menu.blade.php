@@ -181,7 +181,6 @@
                 <img src="${food.img}">
                 <div class="card-content">
                     <h3>${food.name}</h3>
-                    <div class="star-rating">★★★★☆</div> <!-- You can customize the rating here -->
                     <a href="${food.href}" class="view-recipe">View Recipe</a>
                 </div>
             `;
