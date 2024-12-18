@@ -86,6 +86,9 @@
 
             <!-- Submit Button -->
             <button type="submit" class="btn">Sign Up</button>
+            <div class="dont">
+                <p>Already have an account? <a href="{{ route('login') }}" class="button"><b>Login</b></a></p>
+            </div>
         </form>
     </div>
     </div>
