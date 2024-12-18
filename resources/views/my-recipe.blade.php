@@ -32,7 +32,7 @@
         <h1><b>RECIPES</b></h1>
         <p class="subheading">0 Recipes</p>
         <div class="empty-state">
-            <img src="recipes.png" alt="No recipes" />
+            <img src="/assets/images/recipe.png" alt="Recipe Img">
             <h2>No recipes yet</h2>
             <p>Want to create a recipe? Just click on the "Create Recipe".</p>
             <button class="explore-btn">EXPLORE RECIPES</button>
