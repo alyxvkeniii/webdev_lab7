@@ -1,7 +1,7 @@
-@extends('Components.layout')
+@extends('Components.layout2')
 
 @section('additional-styles')
-<link rel="stylesheet" href="/assets/css/menu.css">
+<link rel="stylesheet" href="/assets/css/menu2.css">
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
                     <div class="text-container cute-font">
                         <h2>MENU</h2>
                         <p>Your Go-To Platform for Tried-and-True Recipes</p>
-                        <a href="/sign-up" class="button1">TRY IT FOR FREE</a>
+                        <a href="/my-recipe" class="button1">TRY IT FOR FREE</a>
                         <br>
                         <div class="search-container">
                           <input type="text" placeholder="Search Recipe..." class="search-input">
@@ -67,7 +67,7 @@
         </div>
         <div id="food-cards" class="food-cards"></div>
             <div class="buttons">
-                <button onclick="alert('Sign Up to Unlock Recipes')">Sign Up to Unlock Recipes</button>
+                <button onclick="alert('Make Recipes')">Start to Make Your Own Recipe</button>
                 <button onclick="alert('Download Your Favorite Recipes')">Download Your Favorite Recipes</button>
             </div>
         </div>

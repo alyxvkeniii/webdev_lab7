@@ -46,26 +46,41 @@ nav ul {
     justify-content: center;
 }
 
+/* Update navigation link padding */
 nav ul li {
-    position: relative;
+    padding: 0 15px; /* Add horizontal spacing for consistent padding */
 }
 
-nav ul li .button {
-    color: black;
-    padding: 10px 10px;
-    text-decoration: none;
-    font-size: 1rem;
-    display: inline-block;
+/* Ensure consistent alignment */
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center; /* Center links */
+    margin: 0;
+    padding: 0;
 }
 
-/* Underline effect on hover */
+/* Hover effect adjustment */
 nav ul li:hover .button {
-    border-bottom: 2px solid #ff7979; /* Underline color */
+    border-bottom: 2px solid #ff7979; /* Underline effect */
+    padding-bottom: 5px; /* Add space between text and underline */
 }
 
-/* Add margin-right to the "Help" item */
+/* Remove unnecessary right margin */
 nav ul li:nth-child(3) {
-    margin-right: 400px; /* Adjust the value as needed */
+    margin-right: 400px; /* Remove excessive margin */
+}
+
+/* Responsive fix for smaller screens */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Stack items vertically */
+        gap: 10px; /* Add spacing between items */
+    }
+
+    nav ul li {
+        padding: 10px 0; /* Adjust vertical spacing */
+    }
 }
 
 .dropdown {

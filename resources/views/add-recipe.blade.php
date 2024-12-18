@@ -7,6 +7,8 @@
 @endsection
 
 @section('content')
+<meta name="csrf-token" content="abc123xyz">
+
     <div class="wrapper">
     
     <section id="header-text">
@@ -55,69 +57,13 @@
                     <p>Enter one ingredient per line. Include the quantity (i.e. tablespoons, cloves) and any special preparation (i.e. minced, crushed, chopped). Use optional headers to organize the different parts of the recipe (i.e. Marinade, Sauce, Toppings).</p>
 
                     <div class="ingredients-inputs">
-                        <h4>Marinade</h4>
+                        <h4>Ingredients</h4>
                             <div class="ingredient-entry">
-                                <textarea id="ingredient" type="text" placeholder="e.g. 1/2 cup soy sauce"></textarea>
-                                <button type="button" class="remove-ingredient-btn">Remove Ingredient</button>
+                                <textarea id="ingredient" type="text" placeholder="e.g. 1/2 cup soy sauce" class="wsywyg"></textarea>
+                                <!-- <button type="button" class="remove-ingredient-btn">Remove Ingredient</button> -->
                             </div>
-                            <div class="ingredient-entry">
-                                <input type="text" placeholder="e.g. 1/4 cup vinegar">
-                                <button type="button" class="remove-ingredient-btn">Remove Ingredient</button>
-                            </div>
-                            <div class="ingredient-entry">
-                                <input type="text" placeholder="e.g. 4 cloves garlic, crushed">
-                                <button type="button" class="remove-ingredient-btn">Remove Ingredient</button>
-                            </div>
-
-                        <h4>Main Ingredients</h4>
-                            <div class="ingredient-entry">
-                                <input type="text" placeholder="e.g. 1 kg chicken, cut into pieces">
-                                <button type="button" class="remove-ingredient-btn">Remove Ingredient</button>
-                            </div>
-                            <div class="ingredient-entry">
-                                <input type="text" placeholder="e.g. 1 bay leaf">
-                                <button type="button" class="remove-ingredient-btn">Remove Ingredient</button>
-                            </div>
-                            <div class="ingredient-entry">
-                                <input type="text" placeholder="e.g. 1 tablespoon whole peppercorns">
-                                <button type="button" class="remove-ingredient-btn">Remove Ingredient</button>
-                            </div>
-
-                        <h4>Optional Toppings</h4>
-                            <div class="ingredient-entry">
-                                <input type="text" placeholder="e.g. 2 boiled eggs">
-                                <button type="button" class="remove-ingredient-btn">Remove Ingredient</button>
-                            </div>
-                            <div class="ingredient-entry">
-                                <input type="text" placeholder="e.g. Fried garlic bits">
-                                <button type="button" class="remove-ingredient-btn">Remove Ingredient</button>
-                            </div>
-                    </div>
-
-                    <!-- Buttons to Add More Ingredients or Headers -->
-                    <div class="ingredient-buttons">
-                        <button type="button" class="add-ingredient-btn">+ ADD INGREDIENT</button>
-                        <button type="button" class="add-header-btn">+ ADD HEADER</button>
                     </div>
                 </div>
-
-
-                <!-- Directions Input Section -->
-                <div class="directions-section">
-                    <h3>Directions</h3>
-                    <p>Provide step-by-step instructions on how to prepare your recipe.</p>
-    
-                    <!-- Directions Textarea -->
-                    <textarea id="directions" name="directions" placeholder="Enter directions here..." rows="6"></textarea>
-
-                    <!-- Add More Directions Button -->
-                    <div class="directions-buttons">
-                        <button type="button" class="add-direction-btn">+ ADD STEP</button>
-                    </div>
-                </div>
-
-                <!-- Choose Categories -->
-
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn">SUBMIT RECIPE</button>
@@ -125,11 +71,11 @@
         </div>
     </section>
 @endsection
-
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/ckeditor.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-
     ClassicEditor.create(document.querySelector("#ingredient"), {
         toolbar: [
             "heading",
@@ -141,6 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
             "numberedList",
             "|",
             "blockQuote",
+            "outdent",
+            "indent", // These buttons are for manual indentation
             "|",
             "undo",
             "redo",
@@ -148,12 +96,48 @@ document.addEventListener("DOMContentLoaded", () => {
     })
         .then((editor) => {
             editor.editing.view.change((writer) => {
-                writer.setStyle("height", "190px", editor.editing.view.document.getRoot());
-                editor.ui.view.element.style.width = "98%";
+                writer.setStyle("height", "390px", editor.editing.view.document.getRoot());
+                editor.ui.view.element.style.width = "90%";
             });
         })
         .catch((error) => {
-            console.error("Error initializing description editor:", error);
+            console.error("Error initializing editor:", error);
         });
+
+    // Handle form submission via AJAX
+    const form = document.querySelector("form");
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault(); // Prevent default form submission
+
+        const formData = new FormData(form); // Collect form data
+        const ingredientEditor = document.querySelector("#ingredient");
+
+        // Include the ingredients from the editor
+        formData.append("ingredients", ingredientEditor.value);
+
+        try {
+            const response = await fetch(form.action, {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+                },
+                body: formData,
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                alert("Recipe added successfully!");
+                console.log(result); // Optional: Handle the result as needed
+                form.reset(); // Clear the form after submission
+            } else {
+                alert("Error adding recipe.");
+                console.error(result.errors); // Log validation errors
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+            alert("An unexpected error occurred.");
+        }
     });
+});
 </script>

@@ -77,3 +77,9 @@ Route::get('/adobo', function () {
     return view('adobo');  // This will render the adobo.blade.php view
 })->name('adobo');
 
+
+
+use App\Http\Controllers\AddRecipeController;
+
+Route::post('/my-recipe', [AddRecipeController::class, 'store'])->name('my-recipe');
+

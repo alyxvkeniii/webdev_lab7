@@ -3,7 +3,7 @@
 @section('title', 'FAQ - Frequently Asked Questions')
 
 @section('additional-styles')
-    <link rel="stylesheet" href="/assets/css/faq.css">
+    <link rel="stylesheet" href="/assets/css/faq2.css">
 @endsection
 
 @section('content')

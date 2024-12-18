@@ -51,12 +51,15 @@ class LoginController extends Controller
         if ($validator->fails()) {
             return redirect()->route('sign-up')->withErrors($validator)->withInput();
         }
-    
+
+        // $user_id = Auth::id;    
+
         // Insert the new user into the database
         \DB::table('users')->insert([
             'email' => $request->email,
             'username' => $request->username,
             'role' => 'user',
+            // 'user_id' => $user_id
             'email_verified_at' => now(),
             'password' => bcrypt($request->password),
             'type' => 0, // Use an integer value instead of 'regular'
@@ -64,7 +67,7 @@ class LoginController extends Controller
             'updated_at' => now(),
         ]);
     
-        return redirect('/dashboard')->with('success', 'Account created successfully!');
+        return redirect('/login')->with('success', 'Account created successfully!');
     }
     
 }

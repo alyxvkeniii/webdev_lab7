@@ -7,19 +7,38 @@
 @section('content')
     <!--MY RECIPE SECTION-->
     <div class="container">
-        <div class="bookmarks-section">
-            <div class="image">
-                <img src="/assets/images/recipe.png" alt="Recipe illustration">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Collections</h2>
+        <div class="tabs">
+            <a href="#" class="active">All</a>
+            <a href="/my-recipe">Created</a>
+            <a href="/favorites">Favorites</a>
+        </div>
+        <div class="nav">
+            <div class="item active">
+                <div class="icon">🔖</div>
+                <span>Favorites</span>
             </div>
-            <div class="text">
-                <h1>My Recipes</h1>
-                <h2>No recipes yet</h2>
-                <p>Want to create a recipe? Just click on the plus sign and select "Add Recipe".</p>
-                <a href="/menu2" class="button1">EXPLORE RECIPES</a>
+            <div class="item">
+                <div class="icon">🖌️</div>
+                <span>Created recipes</span>
             </div>
         </div>
-
-        <a href="/add-recipe" class="add-btn">+</a>
+        <button class="create-btn">CREATE RECIPE</button>
     </div>
+    <!-- Main content -->
+    <div class="content">
+        <h1><b>RECIPES</b></h1>
+        <p class="subheading">0 Recipes</p>
+        <div class="empty-state">
+            <img src="recipes.png" alt="No recipes" />
+            <h2>No recipes yet</h2>
+            <p>Want to create a recipe? Just click on the "Create Recipe".</p>
+            <button class="explore-btn">EXPLORE RECIPES</button>
+        </div>
+    </div>
+</div>
+
     <!--END OF MY RECIPE SECTION-->
 @endsection
