@@ -83,3 +83,7 @@ use App\Http\Controllers\AddRecipeController;
 
 Route::post('/my-recipe', [AddRecipeController::class, 'store'])->name('my-recipe');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

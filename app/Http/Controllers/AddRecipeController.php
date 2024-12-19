@@ -11,37 +11,46 @@ class AddRecipeController extends Controller
 {
     public function store(Request $request)
     {
-        // Validate incoming data
-        $validator = Validator::make($request->all(), [
-            'recipetitle' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:30720', // 30MB
-            'ingredients' => 'required|string', // Handle ingredients as a string
-        ]);
+        try {
+            // Validate incoming data
+            $validator = Validator::make($request->all(), [
+                'recipetitle' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:30720', // 30MB
+                'ingredients' => 'required|string',
+            ]);
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 400);
+            if ($validator->fails()) {
+                return response()->json(['errors' => $validator->errors()], 400);
+            }
+
+            // Handle photo upload
+            $photoPath = null;
+            if ($request->hasFile('photo')) {
+                $photoPath = $request->file('photo')->store('recipe_photos', 'public');
+            }
+
+            // Save recipe
+            $recipe = Recipe::create([
+                'name' => $request->recipetitle,
+                'description' => $request->description,
+                'user_id' => Auth::id(),
+                'image' => $photoPath,
+                'instructions' => $request->ingredients,
+                'ratings' => 0,
+                'categories' => $request->categories ?? null,
+                'status' => 'pending',
+            ]);
+
+            return response()->json([
+                'message' => 'Recipe added successfully!'
+            ], 201);
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            return response()->json(['error' => 'Database error occurred'], 500);
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'An unexpected error occurred'], 500);
         }
-
-        // Handle photo upload
-        $photoPath = null;
-        if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('recipe_photos', 'public');
-        }
-
-        // Save recipe
-        $recipe = Recipe::create([
-            'title' => $request->recipetitle,
-            'description' => $request->description,
-            'user_id' => Auth::id(),
-            'image' => $photoPath,
-            'instructions' => $request->ingredients, // Store ingredients as plain text
-            'ratings' => null,
-            'categories' => $request->categories ?? null,
-            'status' => 'pending',
-        ]);
-
-        return response()->json(['message' => 'Recipe added successfully!', 'recipe' => $recipe], 201);
     }
 }
-
