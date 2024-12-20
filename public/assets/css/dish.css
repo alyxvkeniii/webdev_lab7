@@ -659,6 +659,7 @@ footer p {
 
 /* Comments Section */
 #comment-section {
+    padding-top: 20px;
     display: flex;
     background-color: white;
     align-items: center;
@@ -667,7 +668,7 @@ footer p {
 #comment-container {
     position: relative;
     width: 80%;
-    height: 50vh;
+    height: 40vh;
     margin-left: 200px;
 }
 
