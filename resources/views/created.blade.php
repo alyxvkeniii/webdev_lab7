@@ -1,7 +1,7 @@
 @extends('Components.layout2')
 
 @section('additional-styles')
-<link rel="stylesheet" href="/assets/css/my-recipe.css">
+<link rel="stylesheet" href="/assets/css/created.css">
 @endsection
 
 @section('content')
@@ -27,10 +27,11 @@
         </div>
         <a href="/add-recipe" class="create-btn">CREATE RECIPE</a>
     </div>
+
+    <h1><b>CREATED RECIPES</b></h1>
+    
     <!-- Main content -->
     <div class="content">
-        <h1><b>CREATED RECIPES</b></h1>
-    
             @foreach($recipes as $recipe)
                 <div class="card">
                     <img src="{{ asset('storage/' . $recipe->image) }}" alt="{{ $recipe->name }}">
@@ -40,8 +41,6 @@
                     </div>
                 </div>
             @endforeach
-
-       
     </div>
     </div>
 
