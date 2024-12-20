@@ -7,6 +7,8 @@ use App\Http\Controllers\Menu2Controller;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DishController;
 use App\Http\Controllers\MyrecipeController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\FavoriteController;
 
 
 
@@ -16,9 +18,16 @@ use App\Http\Controllers\MyrecipeController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
 
+    // Regular user dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Admin dashboard route
+    Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin');
+    Route::put('/admin/approve/{id}', [AdminDashboardController::class, 'approvePost'])->name('admin.approve');
+    Route::delete('/admin/delete/{id}', [AdminDashboardController::class, 'deletePost'])->name('admin.delete');
+    
+});
 
 Route::get('/menu', function () {
     return view('menu');
@@ -88,9 +97,16 @@ Route::post('/my-recipe', [AddRecipeController::class, 'store'])->name('my-recip
 
 
 Auth::routes();
-
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 Route::get('/menu/{recipeId}', [DishController::class, 'showRecipe']);
 Route::post('/comments', [DishController::class, 'store'])->name('comments.store');
+
+Route::get('/admin-profile', function () {
+    return view('admin-profile');
+})->name('admin-profile');
+
+Route::post('/favorite/add', [DishController::class, 'addFavorite'])->name('favorite.add');
+Route::post('/favorite/remove', [DishController::class, 'removeFavorite'])->name('favorite.remove');
+Route::get('/favorites', [FavoriteController::class, 'favorites'])->name('favorites');
+
 
 

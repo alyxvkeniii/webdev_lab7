@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-    <!--MY RECIPE SECTION-->
-    <div class="container">
+<!--MY RECIPE SECTION-->
+<div class="container">
     <!-- Sidebar -->
     <div class="sidebar">
         <h2>Collections</h2>
@@ -28,20 +28,22 @@
         <a href="/add-recipe" class="create-btn">CREATE RECIPE</a>
     </div>
     <!-- Main content -->
-    <!-- Main content -->
     <div class="content">
         <h1><b>FAVORITES</b></h1>
         <div class="food-cards">
-            <div class="card">
-                <img src="/assets/images/adobo.jpg" alt="Adobo">
-                <div class="card-content">
-                    <h3>Adobo (Marinated Meat)</h3>
-                    <a href="/dish" class="view-recipe">View Recipe</a>
+            @forelse ($favorites as $favorite)
+                <div class="card">
+                    <img src="{{ asset('storage/' . $favorite->image) }}" alt="{{ $favorite->name }}">
+                    <div class="card-content">
+                        <h3>{{ $favorite->name }}</h3>
+                        <a href="{{ route('dish', ['recipeId' => $favorite->id]) }}" class="view-recipe">View Recipe</a>
+                    </div>
                 </div>
-            </div>
-        </div>     
+            @empty
+                <p>You have no favorite recipes yet.</p>
+            @endforelse
+        </div>
     </div>
-    </div>
-
-    <!--END OF MY RECIPE SECTION-->
+</div>
+<!--END OF MY RECIPE SECTION-->
 @endsection

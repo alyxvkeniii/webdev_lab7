@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -16,8 +17,15 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }
 
+
     /**
-     * Show the dashboard with data.
+     * Show the appropriate dashboard with data based on the user's role.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+
+    /**
+     * Show the user dashboard with data.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */

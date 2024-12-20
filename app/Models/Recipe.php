@@ -20,4 +20,12 @@ class Recipe extends Model
         'categories', 
         'status'
     ];
+    public function usersFavorited()
+    {
+        return $this->belongsToMany(User::class, 'favorites', 'recipe_id', 'user_id');
+    }
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
 }
