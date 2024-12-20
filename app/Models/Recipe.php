@@ -10,11 +10,12 @@ class Recipe extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 
+        'name', 
         'description', 
         'user_id', 
         'image', 
-        'instructions', 
+        'instructions',
+        'ingredients', 
         'ratings', 
         'categories', 
         'status'

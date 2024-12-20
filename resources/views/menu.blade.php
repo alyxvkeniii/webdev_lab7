@@ -79,94 +79,94 @@
     <script>
         const foodData = {
             appetizers: [
-                { name: "Lumpiang Shanghai (Spring Rolls)", img: "/assets/images/lumpia.jpg" }, 
-                { name: "Chicharon (Fried Pork Rinds)", img: "/assets/images/chicharon.jpg" },
-                { name: "Tokwa't Baboy (Tofu and Pork)", img: "/assets/images/tofu.jpg" },
-                { name: "Kilawin (Ceviche)", img: "/assets/images/kilawin.jpg" },
-                { name: "Dynamite (Stuffed Chili Peppers)", img: "/assets/images/dyn.jpg" },
-                { name: "Cheese Sticks", img: "/assets/images/chz.jpg" },
-                { name: "Empanada", img: "/assets/images/emp.jpg" },
-                { name: "Calamares (Fried Squid)", img: "/assets/images/cal.jpg" },
-                { name: "Fish Balls", img: "/assets/images/fishb.jpg" },
-                { name: "Ukoy (Shrimp Fritters)", img: "/assets/images/ok.jpg" }
+                { name: "Lumpiang Shanghai (Spring Rolls)", img: "/assets/images/lumpia.jpg", href: "{{ route('login') }}" }, 
+                { name: "Chicharon (Fried Pork Rinds)", img: "/assets/images/chicharon.jpg", href: "{{ route('login') }}" },
+                { name: "Tokwa't Baboy (Tofu and Pork)", img: "/assets/images/tofu.jpg", href: "{{ route('login') }}" },
+                { name: "Kilawin (Ceviche)", img: "/assets/images/kilawin.jpg", href: "{{ route('login') }}" },
+                { name: "Dynamite (Stuffed Chili Peppers)", img: "/assets/images/dyn.jpg", href: "{{ route('login') }}" },
+                { name: "Cheese Sticks", img: "/assets/images/chz.jpg", href: "{{ route('login') }}" },
+                { name: "Empanada", img: "/assets/images/emp.jpg", href: "{{ route('login') }}" },
+                { name: "Calamares (Fried Squid)", img: "/assets/images/cal.jpg", href: "{{ route('login') }}" },
+                { name: "Fish Balls", img: "/assets/images/fishb.jpg", href: "{{ route('login') }}" },
+                { name: "Ukoy (Shrimp Fritters)", img: "/assets/images/ok.jpg", href: "{{ route('login') }}" }
             ],
             
             soups: [
-                { name: "Sinigang (Sour Soup with Pork or Shrimp)", img: "/assets/images/sinigang.jpg" },
-                { name: "Bulalo (Beef Shank Soup)", img: "/assets/images/bulalo.jpg" },
-                { name: "Tinola (Chicken Ginger Soup)", img: "/assets/images/tnl.jpg" },
-                { name: "Nilaga (Boiled Beef Soup)", img: "/assets/images/nlg.jpg" },
-                { name: "Molo Soup (Pork Dumpling Soup)", img: "/assets/images/molo.jpg" },
-                { name: "Lomi (Thick Noodle Soup)", img: "/assets/images/lml.jpg" },
-                { name: "Batchoy (Pork and Noodle Soup)", img: "/assets/images/btchy.jpg" },
-                { name: "La Paz Batchoy (Iloilo's Special Noodle Soup)", img: "/assets/images/lpzB.jpg" },
-                { name: "KBL (Kadios, Baboy, Langka)", img: "/assets/images/kbl.jpg" },
-                { name: "Misua (Misua Noodle Soup)", img: "/assets/images/missu.jpg" }
+                { name: "Sinigang (Sour Soup with Pork or Shrimp)", img: "/assets/images/sinigang.jpg", href: "{{ route('login') }}" },
+                { name: "Bulalo (Beef Shank Soup)", img: "/assets/images/bulalo.jpg", href: "{{ route('login') }}" },
+                { name: "Tinola (Chicken Ginger Soup)", img: "/assets/images/tnl.jpg", href: "{{ route('login') }}" },
+                { name: "Nilaga (Boiled Beef Soup)", img: "/assets/images/nlg.jpg", href: "{{ route('login') }}" },
+                { name: "Molo Soup (Pork Dumpling Soup)", img: "/assets/images/molo.jpg", href: "{{ route('login') }}" },
+                { name: "Lomi (Thick Noodle Soup)", img: "/assets/images/lml.jpg", href: "{{ route('login') }}" },
+                { name: "Batchoy (Pork and Noodle Soup)", img: "/assets/images/btchy.jpg", href: "{{ route('login') }}" },
+                { name: "La Paz Batchoy (Iloilo's Special Noodle Soup)", img: "/assets/images/lpzB.jpg", href: "{{ route('login') }}" },
+                { name: "KBL (Kadios, Baboy, Langka)", img: "/assets/images/kbl.jpg", href: "{{ route('login') }}" },
+                { name: "Misua (Misua Noodle Soup)", img: "/assets/images/missu.jpg", href: "{{ route('login') }}" }
             ],
   
             'main-courses': [
-                { name: "Adobo (Marinated Meat)", img: "/assets/images/adobo.jpg", href: "{{ route('adobo') }}" },
-                { name: "Kare-Kare (Peanut Stew)", img: "/assets/images/krkr.jpg" },
-                { name: "Lechon (Roast Pig)", img: "/assets/images/lchn.jpg" },
-                { name: "Bistek Tagalog (Beefsteak)", img: "/assets/images/bstk.jpg" },
-                { name: "Caldereta (Stew with Tomato Sauce)", img: "/assets/images/calds.jpg" },
-                { name: "Mechado (Beef Stew)", img: "/assets/images/mechu.jpg" },
-                { name: "Pinakbet (Mixed Vegetables with Shrimp Paste)", img: "/assets/images/kbt.jpg" },
-                { name: "Inihaw na Liempo (Grilled Pork Belly)", img: "/assets/images/liemps.jpg" },
-                { name: "Sisig (Sizzling Pork)", img: "/assets/images/sigsig.jpg" },
-                { name: "Chicken Inasal (Grilled Chicken)", img: "/assets/images/inasal.jpg" }
+                { name: "Adobo (Marinated Meat)", img: "/assets/images/adobo.jpg", href: "{{ route('login') }}" },
+                { name: "Kare-Kare (Peanut Stew)", img: "/assets/images/krkr.jpg", href: "{{ route('login') }}" },
+                { name: "Lechon (Roast Pig)", img: "/assets/images/lchn.jpg", href: "{{ route('login') }}" },
+                { name: "Bistek Tagalog (Beefsteak)", img: "/assets/images/bstk.jpg", href: "{{ route('login') }}" },
+                { name: "Caldereta (Stew with Tomato Sauce)", img: "/assets/images/calds.jpg", href: "{{ route('login') }}" },
+                { name: "Mechado (Beef Stew)", img: "/assets/images/mechu.jpg", href: "{{ route('login') }}" },
+                { name: "Pinakbet (Mixed Vegetables with Shrimp Paste)", img: "/assets/images/kbt.jpg", href: "{{ route('login') }}" },
+                { name: "Inihaw na Liempo (Grilled Pork Belly)", img: "/assets/images/liemps.jpg", href: "{{ route('login') }}" },
+                { name: "Sisig (Sizzling Pork)", img: "/assets/images/sigsig.jpg", href: "{{ route('login') }}" },
+                { name: "Chicken Inasal (Grilled Chicken)", img: "/assets/images/inasal.jpg", href: "{{ route('login') }}" }
             ],
     
             'side-dishes': [ 
-                { name: "Atchara (Pickled Papaya)", img: "/assets/images/atch.jpg" },      
-                { name: "Ensaladang Talong (Eggplant Salad)", img: "/assets/images/egsal.jpg" },       
-                { name: "Burong Mangga (Pickled Mango)", img: "/assets/images/mango.jpg" },      
-                { name: "Salted Egg and Tomato", img: "/assets/images/saltomato.jpg" },        
-                { name: "Laing (Taro Leaves in Coconut Milk)", img: "/assets/images/laing.jpg" },        
-                { name: "Gising-Gising (Spicy Green Beans)", img: "/assets/images/wakey.jpg" },        
-                { name: "Adobong Kangkong (Water Spinach Adobo)", img: "/assets/images/adobskang.jpg" },        
-                { name: "Crispy Kangkong (Fried Water Spinach)", img: "/assets/images/crispkang.jpg" },        
-                { name: "Lumpiang Sariwa (Fresh Spring Rolls)", img: "/assets/images/fresh.jpg" },        
-                { name: "Pritong Talong (Fried Eggplant)", img: "/assets/images/ome.jpg" }
+                { name: "Atchara (Pickled Papaya)", img: "/assets/images/atch.jpg", href: "{{ route('login') }}" },      
+                { name: "Ensaladang Talong (Eggplant Salad)", img: "/assets/images/egsal.jpg", href: "{{ route('login') }}" },       
+                { name: "Burong Mangga (Pickled Mango)", img: "/assets/images/mango.jpg", href: "{{ route('login') }}" },      
+                { name: "Salted Egg and Tomato", img: "/assets/images/saltomato.jpg", href: "{{ route('login') }}" },        
+                { name: "Laing (Taro Leaves in Coconut Milk)", img: "/assets/images/laing.jpg", href: "{{ route('login') }}" },        
+                { name: "Gising-Gising (Spicy Green Beans)", img: "/assets/images/wakey.jpg", href: "{{ route('login') }}" },        
+                { name: "Adobong Kangkong (Water Spinach Adobo)", img: "/assets/images/adobskang.jpg", href: "{{ route('login') }}" },        
+                { name: "Crispy Kangkong (Fried Water Spinach)", img: "/assets/images/crispkang.jpg", href: "{{ route('login') }}" },        
+                { name: "Lumpiang Sariwa (Fresh Spring Rolls)", img: "/assets/images/fresh.jpg", href: "{{ route('login') }}" },        
+                { name: "Pritong Talong (Fried Eggplant)", img: "/assets/images/ome.jpg", href: "{{ route('login') }}" }
     
             ],
     
             desserts: [
-                { name: "Halo-Halo (Mixed Shaved Ice Dessert)", img: "/assets/images/mixmix.jpg" },        
-                { name: "Leche Flan (Caramel Custard)", img: "/assets/images/lechugas.jpg" },        
-                { name: "Bibingka (Rice Cake)", img: "/assets/images/bingks.jpg" },        
-                { name: "Turon (Banana Spring Rolls)", img: "/assets/images/rontu.jpg" },        
-                { name: "Puto (Steamed Rice Cake)", img: "/assets/images/putu.jpg" },        
-                { name: "Cassava Cake", img: "/assets/images/cascake.jpg" },        
-                { name: "Buko Pandan (Young Coconut with Pandan Jelly)", img: "/assets/images/bukpan.jpg" },        
-                { name: "Suman (Sticky Rice in Banana Leaves)", img: "/assets/images/sum.jpg" },       
-                { name: "Sapin-Sapin (Layered Rice Cake)", img: "/assets/images/sap.jpg" },        
-                { name: "Maja Blanca (Coconut Milk Pudding)", img: "/assets/images/maj.jpg" }
+                { name: "Halo-Halo (Mixed Shaved Ice Dessert)", img: "/assets/images/mixmix.jpg", href: "{{ route('login') }}" },        
+                { name: "Leche Flan (Caramel Custard)", img: "/assets/images/lechugas.jpg", href: "{{ route('login') }}" },        
+                { name: "Bibingka (Rice Cake)", img: "/assets/images/bingks.jpg", href: "{{ route('login') }}" },        
+                { name: "Turon (Banana Spring Rolls)", img: "/assets/images/rontu.jpg", href: "{{ route('login') }}" },        
+                { name: "Puto (Steamed Rice Cake)", img: "/assets/images/putu.jpg", href: "{{ route('login') }}" },        
+                { name: "Cassava Cake", img: "/assets/images/cascake.jpg", href: "{{ route('login') }}" },        
+                { name: "Buko Pandan (Young Coconut with Pandan Jelly)", img: "/assets/images/bukpan.jpg", href: "{{ route('login') }}" },        
+                { name: "Suman (Sticky Rice in Banana Leaves)", img: "/assets/images/sum.jpg", href: "{{ route('login') }}" },       
+                { name: "Sapin-Sapin (Layered Rice Cake)", img: "/assets/images/sap.jpg", href: "{{ route('login') }}" },        
+                { name: "Maja Blanca (Coconut Milk Pudding)", img: "/assets/images/maj.jpg", href: "{{ route('login') }}" }
             ],
     
             beverages: [
-                { name: "Buko Juice (Coconut Juice)", img: "/assets/images/bukjo.jpg" },        
-                { name: "Calamansi Juice", img: "/assets/images/caljo.jpg" },        
-                { name: "Sago't Gulaman (Tapioca and Gelatin Drink)", img: "/assets/images/sagjo.jpg" },        
-                { name: "Taho (Silken Tofu with Syrup)", img: "/assets/images/tajo.jpg" },        
-                { name: "Salabat (Ginger Tea)", img: "/assets/images/salbs.jpg" },        
-                { name: "Mango Shake", img: "/assets/images/mangsh.jpg" },        
-                { name: "Pineapple Juice", img: "/assets/images/pineju.jpg" },        
-                { name: "Pandan Juice", img: "/assets/images/panjo.jpg" },        
-                { name: "Tsokolate (Filipino Hot Chocolate)", img: "/assets/images/chikolet.jpg" }
+                { name: "Buko Juice (Coconut Juice)", img: "/assets/images/bukjo.jpg", href: "{{ route('login') }}" },        
+                { name: "Calamansi Juice", img: "/assets/images/caljo.jpg", href: "{{ route('login') }}" },        
+                { name: "Sago't Gulaman (Tapioca and Gelatin Drink)", img: "/assets/images/sagjo.jpg", href: "{{ route('login') }}" },        
+                { name: "Taho (Silken Tofu with Syrup)", img: "/assets/images/tajo.jpg", href: "{{ route('login') }}" },        
+                { name: "Salabat (Ginger Tea)", img: "/assets/images/salbs.jpg", href: "{{ route('login') }}" },        
+                { name: "Mango Shake", img: "/assets/images/mangsh.jpg", href: "{{ route('login') }}" },        
+                { name: "Pineapple Juice", img: "/assets/images/pineju.jpg", href: "{{ route('login') }}" },        
+                { name: "Pandan Juice", img: "/assets/images/panjo.jpg", href: "{{ route('login') }}" },        
+                { name: "Tsokolate (Filipino Hot Chocolate)", img: "/assets/images/chikolet.jpg", href: "{{ route('login') }}" }
             ],
     
             breakfast: [      
-                { name: "Tapsilog (Beef Tapa, Egg, and Rice)", img: "/assets/images/tapsi.jpg" },        
-                { name: "Longsilog (Longganisa, Egg, and Rice)", img: "/assets/images/lonsi.jpg" },        
-                { name: "Tocilog (Tocino, Egg, and Rice)", img: "/assets/images/toci.jpg" },        
-                { name: "Daingsilog (Dried Fish, Egg, and Rice)", img: "/assets/images/dayngs.jpg" },        
-                { name: "Champorado (Chocolate Rice Porridge)", img: "/assets/images/champ.jpg" },        
-                { name: "Arroz Caldo (Chicken Rice Porridge)", img: "/assets/images/lugaws.jpg" },        
-                { name: "Pandesal (Bread Rolls)", img: "/assets/images/abs.jpg" },        
-                { name: "Tortang Talong (Eggplant Omelette)", img: "/assets/images/omel.jpg" },        
-                { name: "Bangsilog (Bangus, Egg, and Rice)", img: "/assets/images/bangs.jpg" },        
-                { name: "Corned Beef and Egg", img: "/assets/images/red.jpg" }    
+                { name: "Tapsilog (Beef Tapa, Egg, and Rice)", img: "/assets/images/tapsi.jpg", href: "{{ route('login') }}" },        
+                { name: "Longsilog (Longganisa, Egg, and Rice)", img: "/assets/images/lonsi.jpg", href: "{{ route('login') }}" },        
+                { name: "Tocilog (Tocino, Egg, and Rice)", img: "/assets/images/toci.jpg", href: "{{ route('login') }}" },        
+                { name: "Daingsilog (Dried Fish, Egg, and Rice)", img: "/assets/images/dayngs.jpg", href: "{{ route('login') }}" },        
+                { name: "Champorado (Chocolate Rice Porridge)", img: "/assets/images/champ.jpg", href: "{{ route('login') }}" },        
+                { name: "Arroz Caldo (Chicken Rice Porridge)", img: "/assets/images/lugaws.jpg", href: "{{ route('login') }}" },        
+                { name: "Pandesal (Bread Rolls)", img: "/assets/images/abs.jpg", href: "{{ route('login') }}" },        
+                { name: "Tortang Talong (Eggplant Omelette)", img: "/assets/images/omel.jpg", href: "{{ route('login') }}" },        
+                { name: "Bangsilog (Bangus, Egg, and Rice)", img: "/assets/images/bangs.jpg", href: "{{ route('login') }}" },        
+                { name: "Corned Beef and Egg", img: "/assets/images/red.jpg", href: "{{ route('login') }}" }    
             ]
         };
 

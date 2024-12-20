@@ -11,21 +11,21 @@
     <div class="sidebar">
         <h2>Collections</h2>
         <div class="tabs">
-            <a href="#" class="active">All</a>
-            <a href="/my-recipe">Created</a>
-            <a href="/favorites">Favorites</a>
+            <a href="/my-recipe" class="created">All</a>
+            <a href="/created" class="created">Created</a>
+            <a href="/favorites" class="favorites">Favorites</a>
         </div>
         <div class="nav">
             <div class="item active">
                 <div class="icon">🔖</div>
-                <span>Favorites</span>
+                <span><a href="/favorites" class="favorites">Favorites</a></span>
             </div>
             <div class="item">
                 <div class="icon">🖌️</div>
-                <span>Created recipes</span>
+                <span><a href="/created" class="created">Created recipes</a></span>
             </div>
         </div>
-        <button class="create-btn">CREATE RECIPE</button>
+        <a href="/add-recipe" class="create-btn">CREATE RECIPE</a>
     </div>
     <!-- Main content -->
     <div class="content">
@@ -35,7 +35,7 @@
             <img src="/assets/images/recipe.png" alt="Recipe Img">
             <h2>No recipes yet</h2>
             <p>Want to create a recipe? Just click on the "Create Recipe".</p>
-            <button class="explore-btn">EXPLORE RECIPES</button>
+            <a href="/menu2" class="explore-btn">EXPLORE RECIPES</a>
         </div>
     </div>
 </div>

@@ -5,6 +5,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Menu2Controller;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DishController;
+use App\Http\Controllers\MyrecipeController;
+
+
 
 
 // GUEST VIEW 
@@ -12,10 +16,9 @@ use App\Http\Controllers\LoginController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard/{userId}', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/menu', function () {
     return view('menu');
@@ -73,13 +76,21 @@ Route::get('/add-recipe', function () {
 
 
 // DISH ROUTES
-Route::get('/adobo', function () {
-    return view('adobo');  // This will render the adobo.blade.php view
-})->name('adobo');
-
+Route::get('/dish', function () {
+    return view('dish');  // This will render the adobo.blade.php view
+})->name('dish');
+Route::get('/created', [MyrecipeController::class, 'getRecipesByUser'])->name('created');
 
 
 use App\Http\Controllers\AddRecipeController;
 
 Route::post('/my-recipe', [AddRecipeController::class, 'store'])->name('my-recipe');
+
+
+Auth::routes();
+
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+Route::get('/menu/{recipeId}', [DishController::class, 'showRecipe']);
+Route::post('/comments', [DishController::class, 'store'])->name('comments.store');
+
 

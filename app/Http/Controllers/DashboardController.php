@@ -6,6 +6,21 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the dashboard with data.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function index()
     {
         $latestRecipes = [
@@ -47,54 +62,50 @@ class DashboardController extends Controller
             'image' => 'filipino-foods.jpg',
             'altText' => 'Right Image',
         ];
+
         $celebrateSection = [
             'image' => 'celebrate.jpg',
             'altText' => 'celebrate',
             'title' => 'Welcoming PICKK Recipe!',
             'description' => 'Celebrate with us by throwing a fantastic party! Check out our article to explore recipes perfect for any occasion.',
             'link' => '/menu2',
-            'buttonText' => 'THROW A PARTY'
+            'buttonText' => 'THROW A PARTY',
         ];
     
         $discoverSection = [
             'image' => 'discover.jpg',
             'altText' => 'discover',
             'title' => 'Discover Personalized Filipino Recipes with PICKK Recipe',
-            'description' => 'NEW: Discover Trending Filipino Recipes!
-Stay on top of the latest Filipino food trends with PICKK Recipe! Now, you can explore a curated collection of trending recipes, from modern twists on traditional dishes to new flavor combinations that everyone is talking about. Whether you’re looking to try something new or recreate the hottest dish in Filipino cuisine, you’ll find fresh inspiration to fuel your culinary adventures. Don’t miss out on what’s cooking – check out the trending recipes today!',
+            'description' => 'Stay on top of the latest Filipino food trends with PICKK Recipe! Explore trending recipes and find new inspirations.',
             'link' => '/menu2',
-            'buttonText' => 'GET STARTED'
+            'buttonText' => 'GET STARTED',
         ];
     
         $createRecipeSection = [
             'image' => 'create-recipe.jpg',
             'altText' => 'create-recipe',
-            'title' => 'NEW: Share your Created Recipes!',
-            'description' => 'NEW: Share your Created Recipes!
-                             We know you love creating your own delicious Filipino dishes or modifying recipes to suit your taste. Now, theres even better news: You can share your culinary creations with friends and family through your favorite social media platforms! Whether you’ve put your unique spin on a classic 
-                             recipe or made something entirely new, spreading the joy of cooking has never been easier. Share your recipes today and inspire others to cook up something special!',
+            'title' => 'Share your Created Recipes!',
+            'description' => 'Spread the joy of cooking by sharing your own recipes and culinary creations!',
             'link' => '/my-recipe',
-            'buttonText' => 'CREATE AND SHARE TODAY'
+            'buttonText' => 'CREATE AND SHARE TODAY',
         ];
     
         $discoverTrendingSection = [
             'image' => 'trending.jpg',
             'altText' => 'trending-recipes',
-            'title' => 'NEW: Discover Trending Filipino Recipes!',
-            'description' => 'Discover Personalized Filipino Recipes with PICKK Recipe
-                              PICKK Recipe is cooking up something special! The platform learns your tastes, preferences, and cooking habits, offering personalized recipe recommendations. Whether youre craving a classic Filipino dish or something new, 
-                              PICKK Recipe suggests recipes tailored to your flavor profile. From comforting favorites to exciting culinary surprises, explore dishes that match your mood and satisfy your cravings. Get started today and discover meals that are perfect for you!',
+            'title' => 'Discover Trending Filipino Recipes!',
+            'description' => 'Get personalized recipe suggestions tailored to your taste and preferences!',
             'link' => '/menu2',
-            'buttonText' => 'CHECK OUT'
+            'buttonText' => 'CHECK OUT',
         ];
     
         $explorePickkSection = [
             'image' => 'explore.jpg',
             'altText' => 'explore-recipes',
             'title' => 'Explore all our Filipino Recipes',
-            'description' => 'Discover all PICKK\'s Recipe has to offer, with over 500+ tested recipes all with innovative Guided Cooking functionality.',
+            'description' => 'Discover over 500+ tested recipes with innovative guided cooking functionality.',
             'link' => '/menu2',
-            'buttonText' => 'DISCOVER'
+            'buttonText' => 'DISCOVER',
         ];
     
         return view('dashboard', compact(
@@ -109,4 +120,3 @@ Stay on top of the latest Filipino food trends with PICKK Recipe! Now, you can e
         ));
     }
 }
-

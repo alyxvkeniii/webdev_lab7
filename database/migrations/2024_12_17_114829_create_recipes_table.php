@@ -19,10 +19,11 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id'); // Integer for referencing users
             $table->string('image')->nullable(); // Image as a VARCHAR, optional
             $table->text('description')->nullable(); // TEXT for recipe description
-            $table->text('instructions'); // TEXT for recipe instructions
+            $table->text('ingredients')->nullable();// TEXT for recipe instructions
+            $table->text('instructions')->nullable();// TEXT for recipe instructions
             $table->integer('ratings')->default(0); // Integer for ratings, default to 0
-            $table->integer('categories')->nullable(); // Integer for categories, optional
-            $table->integer('status')->default(1); // Integer for status, default to 1
+            $table->string('categories')->nullable(); // Integer for categories, optional
+            $table->string('status')->default(1); // Integer for status, default to 1
             $table->timestamps(); // Adds "created_at" and "updated_at" columns
 
             // Optional: Add a foreign key constraint if `user_id` references the `users` table

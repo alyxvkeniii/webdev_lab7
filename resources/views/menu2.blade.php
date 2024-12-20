@@ -105,7 +105,7 @@
             ],
   
             'main-courses': [
-                { name: "Adobo (Marinated Meat)", img: "/assets/images/adobo.jpg", href: "{{ route('adobo') }}" },
+                { name: "Adobo (Marinated Meat)", img: "/assets/images/adobo.jpg", href: "{{ route('dish') }}" },
                 { name: "Kare-Kare (Peanut Stew)", img: "/assets/images/krkr.jpg" },
                 { name: "Lechon (Roast Pig)", img: "/assets/images/lchn.jpg" },
                 { name: "Bistek Tagalog (Beefsteak)", img: "/assets/images/bstk.jpg" },

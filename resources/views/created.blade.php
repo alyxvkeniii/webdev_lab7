@@ -28,18 +28,20 @@
         <a href="/add-recipe" class="create-btn">CREATE RECIPE</a>
     </div>
     <!-- Main content -->
-    <!-- Main content -->
     <div class="content">
-        <h1><b>FAVORITES</b></h1>
-        <div class="food-cards">
-            <div class="card">
-                <img src="/assets/images/adobo.jpg" alt="Adobo">
-                <div class="card-content">
-                    <h3>Adobo (Marinated Meat)</h3>
-                    <a href="/dish" class="view-recipe">View Recipe</a>
+        <h1><b>CREATED RECIPES</b></h1>
+    
+            @foreach($recipes as $recipe)
+                <div class="card">
+                    <img src="{{ asset('storage/' . $recipe->image) }}" alt="{{ $recipe->name }}">
+                    <div class="card-content">
+                        <h3>{{ $recipe->name }}</h3>
+                        <a href="/menu/{{ $recipe->id }}" class="view-recipe">View Recipe</a>
+                    </div>
                 </div>
-            </div>
-        </div>     
+            @endforeach
+
+       
     </div>
     </div>
 
