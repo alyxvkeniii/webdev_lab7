@@ -13,10 +13,8 @@
                     <h2>{{ $welcomeSection['title'] }}</h2>
                     <p>{{ $welcomeSection['subtitle'] }}</p>
                     <br>
-                    <div class="search-container">
-                        <input type="text" placeholder="{{ $welcomeSection['searchPlaceholder'] }}" class="search-input">
-                        <button class="search-button">Search</button>
-                    </div>
+                    <p>What would you like to cook today?</p>
+                    <a href="/my-recipe" class="button1">TRY IT FOR FREE</a>
                 </div>
             </div>
         </section>

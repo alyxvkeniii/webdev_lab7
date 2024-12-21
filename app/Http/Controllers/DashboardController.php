@@ -34,8 +34,7 @@ class DashboardController extends Controller
     
         $welcomeSection = [
             'title' => 'Welcome to PICKK\'S Recipe',
-            'subtitle' => 'What would you like to cook today?',
-            'searchPlaceholder' => 'Search Recipe...',
+            'subtitle' => 'Your Go-To Platform for Tried-and-True Recipes',
         ];
 
         $aboutSection = [

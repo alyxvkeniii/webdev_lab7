@@ -16,9 +16,9 @@
                         <a href="/my-recipe" class="button1">TRY IT FOR FREE</a>
                         <br>
                         <div class="search-container">
-                          <input type="text" placeholder="Search Recipe..." class="search-input">
-                          <button class="search-button">Search</button>
-                      </div>
+                            <input type="text" placeholder="Search Recipe..." class="search-input">
+                            <button class="search-button" onclick="searchRecipes()">Search</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1361,6 +1361,30 @@
             });
          }
 
+         function searchRecipes() {
+            const searchInput = document.querySelector('.search-input').value.toLowerCase();
+            const foodCards = document.getElementById('food-cards');
+            foodCards.innerHTML = ''; // Clear previous cards
+
+            // Loop through all categories and filter recipes
+            for (const category in foodData) {
+                foodData[category].forEach((food, index) => {
+                    if (food.name.toLowerCase().includes(searchInput)) {
+                        const card = document.createElement('div');
+                        card.className = 'card';
+                        card.innerHTML = `
+                        <img src="${food.img}">
+                        <div class="card-content">
+                            <h3>${food.name}</h3>
+                            <button class="view-recipe" onclick="openModal('${category}', ${index})">View Recipe</button>
+                         </div>
+                        `;
+                        foodCards.appendChild(card);
+                    }
+                });
+            }
+        }
+
          // Update the openModal function to display the description
         function openModal(category, index) {
             const food = foodData[category][index];
@@ -1395,6 +1419,16 @@
             const modal = document.getElementById('recipe-modal');
             modal.style.display = 'none';
         }
+
+         // Add event listener to the search button
+         document.querySelector('.search-button').addEventListener('click', searchRecipes);
+        
+        // Add event listener to the search input for 'Enter' key
+        document.querySelector('.search-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                searchRecipes();
+            }
+        });
     </script>
 
     <!--END OF JAVASCRIPT-->
