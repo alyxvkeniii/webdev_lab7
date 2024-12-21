@@ -101,7 +101,7 @@
     @foreach ($comments as $comment)
         <div class="comment">
             <div class="profile-pic">
-                <img src="/assets/images/cute-pfp.jpg" alt="User profile picture">
+                <img src="/assets/images/default-pfp.jpg" alt="User profile picture">
             </div>
             <div class="comment-content">
                 <p class="username">{{ $comment->username }}</p>

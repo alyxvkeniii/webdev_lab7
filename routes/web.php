@@ -9,8 +9,7 @@ use App\Http\Controllers\DishController;
 use App\Http\Controllers\MyrecipeController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\FavoriteController;
-
-
+use App\Http\Controllers\AddRecipeController;
 
 
 // GUEST VIEW 
@@ -90,9 +89,6 @@ Route::get('/dish', function () {
 })->name('dish');
 Route::get('/created', [MyrecipeController::class, 'getRecipesByUser'])->name('created');
 
-
-use App\Http\Controllers\AddRecipeController;
-
 Route::post('/my-recipe', [AddRecipeController::class, 'store'])->name('my-recipe');
 
 
@@ -108,5 +104,8 @@ Route::post('/favorite/add', [DishController::class, 'addFavorite'])->name('favo
 Route::post('/favorite/remove', [DishController::class, 'removeFavorite'])->name('favorite.remove');
 Route::get('/favorites', [FavoriteController::class, 'favorites'])->name('favorites');
 
+Route::get('/recipe/{id}', [DishController::class, 'showRecipe'])->name('recipe.show');
+
+Route::get('/dish/{recipeId}', [DishController::class, 'showRecipe'])->name('dish');
 
 

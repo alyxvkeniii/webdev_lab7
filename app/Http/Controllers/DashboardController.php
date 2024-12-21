@@ -31,28 +31,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $latestRecipes = [
-            [
-                'name' => 'Adobo',
-                'image' => 'adobo.jpg',
-                'link' => '/menu2/adobo',
-            ],
-            [
-                'name' => 'Caldereta',
-                'image' => 'caldereta.jpg',
-                'link' => '/menu2/caldereta',
-            ],
-            [
-                'name' => 'Bicol Express',
-                'image' => 'bicol-express.jpg',
-                'link' => '/menu2/bicol-express',
-            ],
-            [
-                'name' => 'Kare-kare',
-                'image' => 'kare-kare.jpg',
-                'link' => '/menu2/kare-kare',
-            ],
-        ];
     
         $welcomeSection = [
             'title' => 'Welcome to PICKK\'S Recipe',
@@ -117,7 +95,6 @@ class DashboardController extends Controller
         ];
     
         return view('dashboard', compact(
-            'latestRecipes',
             'celebrateSection',
             'discoverSection',
             'createRecipeSection',
