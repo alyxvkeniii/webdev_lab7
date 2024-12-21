@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-    <!--MY RECIPE SECTION-->
-    <div class="container">
+<!--MY RECIPE SECTION-->
+<div class="container">
     <!-- Sidebar -->
     <div class="sidebar">
         <h2>Collections</h2>
@@ -28,21 +28,23 @@
         <a href="/add-recipe" class="create-btn">CREATE RECIPE</a>
     </div>
 
-    <h1><b>CREATED RECIPES</b></h1>
-    
     <!-- Main content -->
     <div class="content">
+        <h1><b>CREATED RECIPES</b></h1>
+        
+        <!-- Display recipes in a card layout -->
+        <div class="food-cards">
             @foreach($recipes as $recipe)
                 <div class="card">
                     <img src="{{ asset('storage/' . $recipe->image) }}" alt="{{ $recipe->name }}">
                     <div class="card-content">
                         <h3>{{ $recipe->name }}</h3>
-                        <a href="/menu/{{ $recipe->id }}" class="view-recipe">View Recipe</a>
+                        <a href="{{ route('dish', ['recipeId' => $recipe->id]) }}" class="view-recipe">View Recipe</a>
                     </div>
                 </div>
             @endforeach
+        </div>
     </div>
-    </div>
-
-    <!--END OF MY RECIPE SECTION-->
+</div>
+<!--END OF MY RECIPE SECTION-->
 @endsection

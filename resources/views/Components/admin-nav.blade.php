@@ -32,7 +32,6 @@
                     <li class="dropdown">
                         <a href="#" class="button"><b>More</b></a>
                             <div class="dropdown-content">
-                                <a href="{{ route('admin-profile') }}">Profile</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();">

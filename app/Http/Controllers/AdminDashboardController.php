@@ -9,6 +9,12 @@ use App\Models\Recipe;
 
 class AdminDashboardController extends Controller
 {
+    public function __construct()
+    {
+        // Ensure the user is authenticated and is an admin
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         // Check if the user is authenticated
@@ -20,7 +26,6 @@ class AdminDashboardController extends Controller
             $users = User::all();
             $recipes = Recipe::all();
     
-            // Pass the authenticated user, users, and recipes to the admin view
             return view('admin', compact('user', 'users', 'recipes')); // Ensure 'admin' matches your Blade file name
         }
     
@@ -45,5 +50,17 @@ class AdminDashboardController extends Controller
         $recipe->delete();
 
         return redirect()->route('admin')->with('success', 'Recipe deleted successfully!');
+    }
+
+    public function deleteUser($id)
+    {
+        // Find the user by ID
+        $user = User::findOrFail($id);
+
+        // Delete the user
+        $user->delete();
+
+        // Redirect back to the users page with a success message
+        return redirect()->route('admin.users')->with('success', 'User deleted successfully');
     }
 }

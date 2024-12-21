@@ -13,7 +13,7 @@
             margin-bottom: 10px;
         }
 
-        /* Custom styles for the approval badge */
+        /* Custom styles for the user status badge */
         .badge {
             font-weight: bold;
             padding: 5px 10px;
@@ -21,36 +21,36 @@
             text-transform: uppercase;
         }
 
-        /* Blue badge for pending status */
-        .badge-warning {
-            background-color: #007bff; /* Blue */
-            color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .badge-warning:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-            transform: scale(1.1); /* Slight zoom effect */
-        }
-
-        /* Green badge for approved status */
-        .badge-success {
+        /* Blue badge for active status */
+        .badge-active {
             background-color: #28a745; /* Green */
             color: white;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
-        .badge-success:hover {
+        .badge-active:hover {
             background-color: #218838; /* Darker green on hover */
+            transform: scale(1.1); /* Slight zoom effect */
+        }
+
+        /* Gray badge for inactive status */
+        .badge-inactive {
+            background-color: #6c757d; /* Gray */
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .badge-inactive:hover {
+            background-color: #5a6268; /* Darker gray on hover */
             transform: scale(1.1); /* Slight zoom effect */
         }
     </style>
 @endsection
 
 @section('content')
-    <!--MY RECIPE SECTION-->
+    <!-- Admin Users Section -->
     <div class="container">
         <!-- Sidebar -->
         <div class="sidebar">
@@ -69,60 +69,45 @@
 
         <!-- Main content -->
         <div class="content">
-            <h1><b>Recipe Management</b></h1>
+            <h1><b>User Management</b></h1>
 
-            <!-- Recipe Table -->
+            <!-- Success/Error Messages -->
+            @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+            @if(session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
+
+            <!-- Users Table -->
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>User</th>
-                            <th>Image</th>
-                            <th>Description</th>
-                            <th>Ingredients</th>
-                            <th>Instructions</th>
-                            <th>Categories</th>
+                            <th>Email</th>
+                            <th>Role</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($recipes as $recipe)
+                        @foreach($users as $user)
                             <tr>
-                                <td>{{ $recipe->id }}</td>
-                                <td>{{ $recipe->name }}</td>
-                                <td>{{ $recipe->user ? $recipe->user->username : 'Unknown' }}</td>
-                                <td><img src="{{ asset('storage/' . $recipe->image) }}" alt="{{ $recipe->name }}" width="50" height="50"></td>
-                                <td>{{ Str::limit(strip_tags($recipe->description), 50) }}</td>
-                                <td>{{ Str::limit(strip_tags($recipe->ingredients), 50) }}</td>
-                                <td>{{ Str::limit(strip_tags($recipe->instructions), 50) }}</td>
-                                <td>{{ $recipe->categories }}</td>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->username }}</td>
+                                <td>{{ $user->email }}</td>
                                 <td>
-                                    @if($recipe->status == 'pending') <!-- Check if status is 'pending' -->
-                                        <span class="badge badge-warning">Pending</span>
-                                    @elseif($recipe->status == 'approved') <!-- Check if status is 'approved' -->
-                                        <span class="badge badge-success">Approved</span>
+                                    @if($user->role == 1)
+                                        <span class="badge badge-active">Admin</span>
                                     @else
-                                        <span class="badge badge-secondary">Unknown</span>
+                                        <span class="badge badge-inactive">User</span>
                                     @endif
                                 </td>
-
-                                <!-- Action Buttons (Approve & Delete) -->
                                 <td>
                                     <div class="action-buttons">
-                                        @if($recipe->status == 'pending') <!-- Only show approve button if 'pending' -->
-                                            <form action="{{ route('admin.approve', $recipe->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                @method('PUT')
-                                                <button type="submit" class="btn btn-success" title="Approve">
-                                                    <i class="fas fa-check"></i> <!-- Font Awesome check icon -->
-                                                </button>
-                                            </form>
-                                        @endif
-
                                         <!-- Delete button -->
-                                        <form action="{{ route('admin.delete', $recipe->id) }}" method="POST" style="display:inline;">
+                                        <form action="{{ route('admin.deleteUser', $user->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger" title="Delete">
@@ -138,5 +123,5 @@
             </div>
         </div>
     </div>
-    <!--END OF MY RECIPE SECTION-->
+    <!-- END OF USER MANAGEMENT SECTION -->
 @endsection
