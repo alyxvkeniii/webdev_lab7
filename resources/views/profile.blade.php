@@ -1,96 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editable Profile</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
-        .profile-container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
-        }
-        .profile-container img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #ccc;
-            cursor: pointer;
-        }
-        .profile-container input[type="file"] {
-            display: none;
-        }
-        .profile-container h2 {
-            margin: 15px 0 5px;
-            font-size: 1.5rem;
-        }
-        .profile-container p {
-            color: #666;
-            margin: 5px 0 15px;
-        }
-        .profile-container button {
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .profile-container button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Profile Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/profile.css">
 </head>
+
 <body>
-    <div class="profile-container">
-        <label for="profileImage">
-            <img src="https://via.placeholder.com/120" alt="Profile Picture" id="profilePicture">
-        </label>
-        <input type="file" id="profileImage" accept="image/*" onchange="updateImage(event)">
-        <h2 id="profileName">John Doe</h2>
-        <p id="profileBio">Web Developer & Designer</p>
-        <button onclick="editProfile()">Edit Profile</button>
+    <!-- HEADER -->
+    <header>
+
+        <div class="logo">
+            <img src="/assets/images/logo.png" alt="Logo">
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="{{ route('dashboard') }}" class="nav-btn"><b>Explore</b></a></li>
+                <li><a href="{{ route('my-recipe') }}" class="nav-btn"><b>My Recipes</b></a></li>
+                <li><a href="{{ route('menu2') }}" class="nav-btn"><b>Menu</b></a></li>
+                <li><a href="{{ route('faq2') }}" class="nav-btn"><b>FAQ</b></a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="nav-btn1"><b>More</b></a>
+                    <div class="dropdown-content">
+                        <a href="{{ route('profile') }}">Profile</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>                            
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+    <!-- END OF HEADER -->
+
+    <div class="container profile-container">
+
+        <section id="header-text">
+            <div class="header-faq-text">
+                <h3>Profile Management</h3>
+                <p>Here, you can update and customize their personal information, such as profile picture, bio, contact details</p>
+            </div>
+        </section>
+        
+        <!-- Profile Section -->
+        <div class="row">
+            <!-- Left Side: Profile Picture -->
+            <div class="col-md-4 text-center">
+                <div class="card p-3">
+                    <img id="profile-pic" src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-picture mb-3">
+                    <h5 id="username">@username</h5>
+                    <p id="profile-description">Short description here</p>
+                    <form id="picture-form">
+                        <label for="file-input" class="button1">Choose Picture</label>
+                        <input id="file-input" type="file" accept="image/*" class="d-none">
+                        <button type="submit" class="button0">Save</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Side: User Information -->
+            <div class="col-md-8">
+                <div class="card p-3">
+                    <h5>User Information</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Full Name:</strong> <span id="user-name">Name</span></li>
+                        <li class="list-group-item"><strong>Location:</strong> <span id="user-location">Unknown</span></li>
+                        <li class="list-group-item"><strong>Gender:</strong> <span id="user-gender">Not specified</span></li>
+                        <li class="list-group-item"><strong>Email:</strong> <span id="user-email">john.doe@example.com</span></li>
+                        <li class="list-group-item"><strong>Joined:</strong> <span id="user-joined">2024-12-21</span></li>
+                    </ul>
+                    <button id="edit-profile-btn" class="button2" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- Modal for Editing Profile -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-profile-form">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" id="name" class="form-control" value="John Doe">
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" id="location" class="form-control" value="Unknown">
+                        </div>
+                        <div class="mb-3">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select id="gender" class="form-select">
+                                <option value="Not specified" selected>Not specified</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email (Read-only)</label>
+                            <input type="email" id="email" class="form-control" value="john.doe@example.com" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Short Description</label>
+                            <textarea id="description" class="form-control" rows="3">Short description here</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="username-edit" class="form-label">Username</label>
+                            <input type="text" id="username-edit" class="form-control" value="@username">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function updateImage(event) {
-            const file = event.target.files[0];
+        // Load persisted data from localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const storedName = localStorage.getItem('userName');
+            const storedLocation = localStorage.getItem('userLocation');
+            const storedGender = localStorage.getItem('userGender');
+            const storedDescription = localStorage.getItem('profileDescription');
+            const storedProfilePic = localStorage.getItem('profilePic');
+            const storedUsername = localStorage.getItem('username');
+
+            if (storedName) document.getElementById('user-name').textContent = storedName;
+            if (storedLocation) document.getElementById('user-location').textContent = storedLocation;
+            if (storedGender) document.getElementById('user-gender').textContent = storedGender;
+            if (storedDescription) document.getElementById('profile-description').textContent = storedDescription;
+            if (storedProfilePic) document.getElementById('profile-pic').src = storedProfilePic;
+            if (storedUsername) document.getElementById('username').textContent = storedUsername;
+        });
+
+        // Handle profile picture upload
+        const fileInput = document.getElementById('file-input');
+        const profilePic = document.getElementById('profile-pic');
+        const pictureForm = document.getElementById('picture-form');
+
+        pictureForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const file = fileInput.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('profilePicture').src = e.target.result;
+                reader.onload = () => {
+                    profilePic.src = reader.result;
+                    localStorage.setItem('profilePic', reader.result); // Save to localStorage
                 };
                 reader.readAsDataURL(file);
             }
-        }
+        });
 
-        function editProfile() {
-            const name = prompt('Enter your name:', document.getElementById('profileName').textContent);
-            if (name) {
-                document.getElementById('profileName').textContent = name;
-            }
+        // Handle profile editing
+        const editProfileForm = document.getElementById('edit-profile-form');
+        const userName = document.getElementById('user-name');
+        const userLocation = document.getElementById('user-location');
+        const userGender = document.getElementById('user-gender');
+        const profileDescription = document.getElementById('profile-description');
+        const usernameField = document.getElementById('username');
+        const nameInput = document.getElementById('name');
+        const locationInput = document.getElementById('location');
+        const genderInput = document.getElementById('gender');
+        const descriptionInput = document.getElementById('description');
+        const usernameEditInput = document.getElementById('username-edit');
 
-            const bio = prompt('Enter your bio:', document.getElementById('profileBio').textContent);
-            if (bio) {
-                document.getElementById('profileBio').textContent = bio;
-            }
-        }
+        editProfileForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            userName.textContent = nameInput.value;
+            userLocation.textContent = locationInput.value;
+            userGender.textContent = genderInput.value;
+            profileDescription.textContent = descriptionInput.value;
+            usernameField.textContent = usernameEditInput.value;
+
+            // Save to localStorage
+            localStorage.setItem('userName', nameInput.value);
+            localStorage.setItem('userLocation', locationInput.value);
+            localStorage.setItem('userGender', genderInput.value);
+            localStorage.setItem('profileDescription', descriptionInput.value);
+            localStorage.setItem('username', usernameEditInput.value);
+
+            const modal = bootstrap.Modal.getInstance(document.getElementById('editProfileModal'));
+            modal.hide();
+        });
     </script>
 </body>
+
 </html>
